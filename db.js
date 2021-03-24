@@ -1,50 +1,23 @@
-export const videos = [
+import mongoose from "mongoose";
+import dotenv from "dotenv";
+dotenv.config();
+;
+mongoose.connect(
+    process.env.MONGO_URL,
     {
-        id: 32432423,
-        title: 'Video awesome',
-        description: 'This is something I love',
-        views: 24,
-        videoFile: "https://archive.org/download/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4",
-        creator: {
-            id: 1212,
-            name: "wooseberry",
-            email: "wooseberry@google.com"
-        }
-    },
-    {
-        id: 45432423,
-        title: 'Eat awesome',
-        description: 'This is something I love',
-        views: 24,
-        videoFile: "https://archive.org/download/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4",
-        creator: {
-            id: 1212,
-            name: "cherry",
-            email: "wooseberry@google.com"
-        }
-    },
-    {
-        id: 68432423,
-        title: 'work awesome',
-        description: 'This is something I love',
-        views: 24,
-        videoFile: "https://archive.org/download/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4",
-        creator: {
-            id: 1212,
-            name: "banana",
-            email: "wooseberry@google.com"
-        }
-    },
-    {
-        id: 99432423,
-        title: 'sleep awesome',
-        description: 'This is something I love',
-        views: 24,
-        videoFile: "https://archive.org/download/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4",
-        creator: {
-            id: 1212,
-            name: "mango",
-            email: "wooseberry@google.com"
-        }
+        //얘네가 무슨일을 하는지는 알필요 없고 그냥 설정임
+        //mongoDB가 Hey 이 configuration 을 추가해 라고 함
+        useNewUrlParser: true,
+        useFindAndModify: false
     }
-];
+);
+
+const db = mongoose.connection;
+
+
+const handleOpen = () => console.log("✅  Connected to DB");
+const handleError = () => console.log(`❌ Error on DB Connection:${error}`);
+//once=한번실행
+//connetion을 열고 성공여부를 확인 하는 function
+db.once("open", handleOpen);
+db.on("error", handleError);

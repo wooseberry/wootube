@@ -1,7 +1,22 @@
 import { videos } from "../db";
 import routes from "../routes";
-export const home = (req, res) => {
-    res.render("home", { pageTitle: "Home", videos });
+import Video from "../models/Video";
+
+
+//async는 너를 기다려주는 무언가야
+//javascript야 이 funciton 의 어떤 부분은 꼭 기다려야해
+//await 키워드는 async없이는 쓸 수 없어
+//javascript는 default로 널 기다리게 프로그래밍 되어있지 않아
+//try catch
+export const home = async (req, res) => {
+    try {
+        const videos = await Video.find({});
+        res.render("home", { pageTitle: "Home", videos });
+
+    } catch (error) {
+        console.log(error);
+        res.render("home", { pageTitle: "Home", videos: [] });
+    }
 };
 
 export const search = (req, res) => {
