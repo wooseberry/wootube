@@ -16,6 +16,9 @@ const app = express();
 //위에서 아래로 실행되기 때문에 위치가 중요
 app.use(helmet());
 app.set("view engine", "pug");
+// /uploads로 가면 uploads라는 directory 안으로 들어간단은 거지
+//static = directory 에서 file을 보내주는 middleware야
+app.use("/uploads", express.static("uploads"))
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -34,4 +37,5 @@ app.use(routes.users, userRouter);
 app.use(routes.videos, videoRouter);
 //respond with "hello world" when a GET request is made to the homepage
 //누군가가 불러오려할때 app object를 주겠다
+
 export default app;

@@ -17,6 +17,7 @@ export const home = async (req, res) => {
         console.log(error);
         res.render("home", { pageTitle: "Home", videos: [] });
     }
+
 };
 
 export const search = (req, res) => {
@@ -29,12 +30,22 @@ export const search = (req, res) => {
 export const getUpload = (req, res) => {
     res.render("upload", { pageTitle: "Upload" });
 };
-export const postUpload = (req, res) => {
+export const postUpload = async (req, res) => {
     const {
-        body: { file, title, description }
+        body: { title, description },
+        file: { path }
     } = req;
+    //새로운 객체 생성
+    //여기서의 Video가 스키마에 있는 Video
+    const newVideo = await Video.create({
+        fileUrl: path,
+        title,
+        description
+    })
+
     // To Do : Upload and save video
-    res.redirect(routes.videoDetail(32432423));
+    res.redirect(routes.videoDetail(newVideo.id));
+
 };
 
 export const videoDetail = (req, res) =>
