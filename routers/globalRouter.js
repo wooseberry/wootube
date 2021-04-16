@@ -9,7 +9,9 @@ import {
     postJoin,
     postLogin,
     githubLogin,
-    postGithubLogIn
+    postGithubLogIn,
+    kakaoLogin,
+    postKakaoLogIn
 } from "../controllers/userController";
 import { onlyPublic, onlyPrivate } from "../middlewares";
 
@@ -33,4 +35,11 @@ globalRouter.get(
     postGithubLogIn
 );
 
+globalRouter.get(routes.kakao, kakaoLogin);
+
+globalRouter.get(
+    routes.kakaoCallback,
+    passport.authenticate("kakao", { failureRedirect: "/login" }),
+    postKakaoLogIn
+);
 export default globalRouter;
