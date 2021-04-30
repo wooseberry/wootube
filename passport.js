@@ -14,10 +14,9 @@ passport.use(
             clientSecret: process.env.GH_SECRET,
             callbackURL: `http://localhost:4000${routes.githubCallback}`
         },
-
         githubLoginCallback
     )
-)
+);
 passport.use(
     new KakaoStrategy(
         {

@@ -11,7 +11,7 @@ const USERS = "/users";
 const USER_DETAIL = "/:id";
 const EDIT_PROFILE = "/edit-profile";
 const CHANGE_PASSWORD = "/change-password";
-
+const ME = "/me";
 // Videos
 
 const VIDEOS = "/videos";
@@ -29,6 +29,8 @@ const GITHUB_CALLBACK = "/auth/github/callback";
 const KAKAO = "/auth/kakao";
 const KAKAO_CALLBACK = "/auth/kakao/callback";
 
+
+//
 const routes = {
     home: HOME,
     join: JOIN,
@@ -71,7 +73,8 @@ const routes = {
     gitHub: GITHUB,
     githubCallback: GITHUB_CALLBACK,
     kakao: KAKAO,
-    kakaoCallback: KAKAO_CALLBACK
+    kakaoCallback: KAKAO_CALLBACK,
+    me: ME
 };
 
 export default routes;
